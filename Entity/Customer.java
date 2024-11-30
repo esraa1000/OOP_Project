@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Customer extends User{
+    private int customerId;
     private double balance;
     private String address;
     private List<String> interests;
@@ -16,8 +17,9 @@ public class Customer extends User{
 
     public Customer(){}
 
-    public Customer(String username, String password, Date dateOfBirth,double balance, String address){
-        super(username,password,dateOfBirth);
+    public Customer(int userId,String username, String password, Date dateOfBirth,int customerId,double balance, String address){
+        super(userId, username,password,dateOfBirth);
+        this.customerId=customerId;
         this.balance=balance;
         this.address=address;
     }

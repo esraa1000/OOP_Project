@@ -3,13 +3,15 @@ package Entity;
 import java.util.Date;
 
 public class Admin extends User{
+    private int adminId;
     private String role;
     private double workingHours;
 
     public Admin(){}
 
-    public Admin(String username, String password, Date dateOfBirth, String role, double workingHours){
-        super(username,password,dateOfBirth);
+    public Admin(int userId,String username, String password, Date dateOfBirth,int adminId, String role, double workingHours){
+        super(userId,username,password,dateOfBirth);
+        this.adminId=adminId;
         this.role=role;
         this.workingHours=workingHours;
 
