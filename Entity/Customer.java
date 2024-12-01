@@ -3,27 +3,27 @@ package Entity;
 import java.util.Date;
 import java.util.List;
 
-public class Customer extends User{
+public class Customer extends User {
     private int customerId;
     private double balance;
     private String address;
     private List<String> interests;
-    enum Gender{
+    enum Gender {
         MALE,
         FEMALE;
-
     }
     private Gender gender;
-
     private Cart cart;
+    private List<Order> orders; // Added list of orders
 
-    public Customer(){}
+    public Customer() {}
 
-    public Customer(int userId,String username, String password, Date dateOfBirth,int customerId,double balance, String address){
-        super(userId, username,password,dateOfBirth);
-        this.customerId=customerId;
-        this.balance=balance;
-        this.address=address;
+    public Customer(int userId, String username, String password, Date dateOfBirth, int customerId, double balance, String address, List<Order> orders) {
+        super(userId, username, password, dateOfBirth);
+        this.customerId = customerId;
+        this.balance = balance;
+        this.address = address;
+        this.orders = orders; // Initialize orders
     }
 
     public double getBalance() {
@@ -72,5 +72,13 @@ public class Customer extends User{
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

@@ -3,6 +3,7 @@ package Entity;
 public class Order {
     private String paymentMethod;
     private int orderId;
+    private int userId;
     private double discount;
     private double tax;
     private double shippingFee;
@@ -20,9 +21,13 @@ public class Order {
         return orderId;
     }
 
+    public int getUserId(){ return userId; }
+
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
+
+    public void setUserId(int userId){this.userId = userId; }
 
     public double getDiscount() {
         return discount;
