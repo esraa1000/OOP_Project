@@ -8,12 +8,14 @@ public class Customer extends User{
     private double balance;
     private String address;
     private List<String> interests;
-    private enum gender{
+    enum Gender{
         MALE,
         FEMALE;
 
     }
-    //private Cart cart;
+    private Gender gender;
+
+    private Cart cart;
 
     public Customer(){}
 
@@ -46,5 +48,29 @@ public class Customer extends User{
 
     public void setInterests(List<String> interests) {
         this.interests = interests;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 }

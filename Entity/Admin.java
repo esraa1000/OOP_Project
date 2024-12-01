@@ -32,4 +32,12 @@ public class Admin extends User{
     public void setWorkingHours(double workingHours) {
         this.workingHours = workingHours;
     }
+
+    public int getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(int adminId) {
+        this.adminId = adminId;
+    }
 }
