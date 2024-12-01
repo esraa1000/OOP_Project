@@ -14,8 +14,6 @@ public class Admin extends User{
         this.adminId=adminId;
         this.role=role;
         this.workingHours=workingHours;
-//fjfjf
-        //gfg
     }
 
     public String getRole() {
