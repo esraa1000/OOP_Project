@@ -1,6 +1,7 @@
 package DAO;
 
 import Database.Database;
+import Entity.Customer;
 import Entity.Order;
 import Entity.User;
 
@@ -22,41 +23,29 @@ public class OrderDAO {
         throw new IllegalArgumentException("Order with ID " + orderId + " was not found");
     }
 
-   public void addOrder(Order order){
+    public void addOrder(Order order) {
         Database.orders.add(order);
-   }
+    }
 
-   public void updateOrder(Order order){
-        for (int i = 0 ; i < Database.orders.size(); i++){
-            if (Database.orders.get(i).getOrderId() == order.getOrderId()){
+    public void updateOrder(Order order) {
+        for (int i = 0; i < Database.orders.size(); i++) {
+            if (Database.orders.get(i).getOrderId() == order.getOrderId()) {
                 Database.orders.set(i, order);
             }
         }
-   }
+    }
 
     public void deleteOrder(int orderId) {
         Database.orders.removeIf(order -> order.getOrderId() == orderId);
     }
 
     public List<Order> findOrdersByCustomerUsername(String username) {
-        int userId = -1;
-    for (User user : Database.customers) {
-        if (user.getUsername().equals(username)) {
-            userId = user.getUserId(); break;
+        for (Customer customer : Database.customers) {
+            if (customer.getUsername().equals(username)) {
+                return new ArrayList<>(customer.getOrders());
+            }
         }
-    }
-    if (userId == -1){
         throw new IllegalArgumentException("Customer with username " + username + " was not found");
     }
 
-    List<Order> customerOrders = new ArrayList<>();
-    for (Order order : Database.orders) {
-        if (order.getUserId() == userId) {
-            customerOrders.add(order);
-                  }
-             }
-    return customerOrders;
-        }
-    }
-
-
+}
