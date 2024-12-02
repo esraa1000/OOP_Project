@@ -4,7 +4,10 @@ import Entity.Admin;
 
 import java.util.List;
 
-public class AdminDAO {
+public class AdminDAO  {
+
+    public AdminDAO(){}
+
     public void addAdmin(Admin admin){
         Database.admins.add(admin);
     }
@@ -32,8 +35,18 @@ public class AdminDAO {
         }
     }
 
+    public Admin getAdminByUsername(String username){
+        for(Admin a: Database.admins){
+            if(a.getUsername().equals(username))return a;
+
+        }
+        return null;
+    }
+
+
     public void deleteAdmin(int id){
         Database.admins.removeIf(a -> a.getAdminId() == id);
     }
+
 
 }

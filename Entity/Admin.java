@@ -9,6 +9,11 @@ public class Admin extends User{
 
     public Admin(){}
 
+    public Admin(String username, String password, Date dateOfBirth){
+        super(username,password,dateOfBirth);
+
+    }
+
     public Admin(int userId,String username, String password, Date dateOfBirth,int adminId, String role, double workingHours){
         super(userId,username,password,dateOfBirth);
         this.adminId=adminId;
