@@ -7,11 +7,11 @@ import java.util.List;
 
 public class CategoryDAO {
 
-    public List<Category> getallCategories(){
+    public static List<Category> getallCategories(){
 
         return Database.categories;
     }
-    public Category getCategorybyId(int id ){
+    public static Category getCategorybyId(int id ){
         for(Category category:Database.categories){
             if(category.getId()==id){
                 return category;
@@ -20,11 +20,11 @@ public class CategoryDAO {
         }
         return null;
     }
-    public void addCategory(Category category){
+    public static void addCategory(Category category){
         Database.categories.add(category);
     }
 
-    public boolean updateCategory(Category updatedCategory) {
+    public static boolean updateCategory(Category updatedCategory) {
         for (Category category : Database.categories) {
             if (category.getId() == updatedCategory.getId()) {
                 int index = Database.categories.indexOf(category);
@@ -36,7 +36,7 @@ public class CategoryDAO {
         return false;
 
     }
-    public void deleteCategory(Category category){
+    public static void deleteCategory(Category category){
         Database.categories.remove(category);
     }
 
