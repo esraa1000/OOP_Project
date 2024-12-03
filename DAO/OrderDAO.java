@@ -3,7 +3,6 @@ package DAO;
 import Database.Database;
 import Entity.Customer;
 import Entity.Order;
-import Entity.User;
 
 
 import java.util.ArrayList;

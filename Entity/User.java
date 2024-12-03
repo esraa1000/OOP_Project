@@ -27,8 +27,6 @@ public abstract class User {
         return userId;
     }
 
-    public String getUsername(){return username; }
-
     public void setUserId(int userId) {
         this.userId = userId;
     }
