@@ -8,13 +8,11 @@ import Entity.Order;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDAO {
+public class OrderDAO implements GenericDAO<Order> {
 
-    public List<Order> getAllOrders() {
-        return new ArrayList<>(Database.orders);
-    }
 
-    public Order getOrderById(int orderId) {
+
+    public Order getById(int orderId) {
         for (Order order : Database.orders) {
             if (order.getOrderId() == orderId) {
                 return order;
@@ -23,11 +21,11 @@ public class OrderDAO {
         throw new IllegalArgumentException("Order with ID " + orderId + " was not found");
     }
 
-    public void addOrder(Order order) {
+    public void add(Order order) {
         Database.orders.add(order);
     }
 
-    public void updateOrder(Order order) {
+    public void update(Order order) {
         for (int i = 0; i < Database.orders.size(); i++) {
             if (Database.orders.get(i).getOrderId() == order.getOrderId()) {
                 Database.orders.set(i, order);
@@ -35,7 +33,7 @@ public class OrderDAO {
         }
     }
 
-    public void deleteOrder(int orderId) {
+    public void delete(int orderId) {
         Database.orders.removeIf(order -> order.getOrderId() == orderId);
     }
 
@@ -46,6 +44,10 @@ public class OrderDAO {
             }
         }
         throw new IllegalArgumentException("Customer with username " + username + " was not found");
+    }
+
+    public List<Order> getAllOrders() {
+        return new ArrayList<>(Database.orders);
     }
 
 }

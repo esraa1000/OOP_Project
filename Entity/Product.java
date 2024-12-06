@@ -1,17 +1,18 @@
 package Entity;
 
 public class Product {
+    private static int idCounter;
     private String name;
     private double price;
     private Category category;
     private int id;
     private int quantity;
-    public Product(){}
-    public Product(String name,double price,Category category,int id,int quantity){
+    public Product(){this.id=++idCounter;}
+    public Product(String name,double price,Category category,int quantity){
         this.name=name;
         this.price=price;
         this.category=category;
-        this.id=id;
+        this.id=++idCounter;
         this.quantity=quantity;
     }
 

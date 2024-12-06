@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Customer extends User {
+    private static int idCounter;
     private int customerId;
     private double balance;
     private String address;
@@ -16,14 +17,22 @@ public class Customer extends User {
     private Cart cart;
     private List<Order> orders; // Added list of orders
 
-    public Customer() {}
+    public Customer() {this.customerId=++idCounter;}
 
-    public Customer(int userId, String username, String password, Date dateOfBirth, int customerId, double balance, String address, List<Order> orders) {
-        super(userId, username, password, dateOfBirth);
-        this.customerId = customerId;
+    public Customer(String username,String password,Date dateOfBirth){
+        super(username,password,dateOfBirth);
+        this.customerId=++idCounter;
+
+    }
+
+
+
+    public Customer( String username, String password, Date dateOfBirth, double balance, String address, List<Order> orders) {
+        super(username, password, dateOfBirth);
         this.balance = balance;
         this.address = address;
         this.orders = orders; // Initialize orders
+        this.customerId=++idCounter;
     }
 
     public double getBalance() {

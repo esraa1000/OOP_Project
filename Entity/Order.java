@@ -1,6 +1,7 @@
 package Entity;
 
 public class Order {
+    private static int idCounter;
     private String paymentMethod;
     private int orderId;
     private int userId;
@@ -8,6 +9,17 @@ public class Order {
     private double tax;
     private double shippingFee;
     private double checkOutTotal;
+
+    public Order(){this.orderId=++idCounter;}
+
+    public Order(String paymentMethod, double discount, double tax, double shippingFee, int userId) {
+        this.paymentMethod = paymentMethod;
+        this.discount = discount;
+        this.tax = tax;
+        this.shippingFee = shippingFee;
+        this.userId = userId;
+        this.orderId=++idCounter;
+    }
 
     public String getPaymentMethod() {
         return paymentMethod;
