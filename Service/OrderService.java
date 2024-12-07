@@ -2,6 +2,7 @@ package Service;
 import DAO.OrderDAO;
 import Entity.Order;
 
+
 public class OrderService {
   private final OrderDAO orderDAO;
 
@@ -24,14 +25,54 @@ public class OrderService {
   }
 
   public void updateOrder(Order order){
-      ////
+      if (order == null || order.getOrderId() < 0 || order.getPaymentMethod() == null){
+          System.out.println("order details are invalid");
+          return;
+      }
+      if (orderDAO.getOrderById((order.getOrderId())) != null){
+          orderDAO.updateOrder(order);
+          System.out.println("order has been updated successfully");
+      }
+      else {
+          System.out.println("order with this ID does not exist");
+      }
   }
   public void cancelOrder(int orderId){
-     //
+     if (orderId < 0){
+         System.out.println("invalid order ID");
+     }
+     if (orderDAO.getOrderById(orderId) != null){
+         orderDAO.deleteOrder(orderId);
+         System.out.println("order has been cancelled successfully");
+     }
+     else {
+         System.out.println("Order with this ID does not exist");
+     }
   }
-  //public List<Order> getAllOrders(){
-      //
+  public Order getOrderById(int orderId){
+  if (orderId < 0){
+      System.out.println("invalid Order ID");
   }
+ Order order = orderDAO.getOrderById((orderId));
+  if (order != null){
+      return order;
+  } else{
+      System.out.println("Order with this ID does not exist");
+      return null;
+     }
+  }
+
+    public List<Order> getAllOrders() {
+        List<Order> orders = orderDAO.getAllOrders();
+        if (!orders.isEmpty()) {
+            return orders;
+        } else {
+            System.out.println("No orders found.");
+            return new ArrayList<>();
+        }
+    }
+
+}
 
 
 
