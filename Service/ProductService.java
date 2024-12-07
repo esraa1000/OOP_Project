@@ -7,7 +7,9 @@ import java.util.List;
 
 public class ProductService {
 
-    public List<Product> getallProducts(){
+    ProductDAO productDAO=new ProductDAO();
+
+    public List<Product> getAllProducts(){
         if(Database.products.isEmpty()){
         System.out.println("There are no Products available");
     }else{
@@ -18,8 +20,8 @@ public class ProductService {
     }
     public void addProduct(Product product){
         if(product!=null && product.getId()>=0 && product.getName()!=null ) {
-            if (ProductDAO.getProductbyId(product.getId()) == null) {
-                ProductDAO.addProduct(product);
+            if (productDAO.getById(product.getId()) == null) {
+                productDAO.add(product);
                 System.out.println("Product is added successfully");
             } else {
                 System.out.println("This product already exists ");
@@ -30,8 +32,8 @@ public class ProductService {
     }
     public void updateProduct(Product updatedProduct){
         if(updatedProduct!=null && updatedProduct.getId()>=0 && updatedProduct.getName()!=null ) {
-            if (ProductDAO.getProductbyId(updatedProduct.getId()) != null) {
-                ProductDAO.updateProduct(updatedProduct);
+            if (productDAO.getById(updatedProduct.getId()) != null) {
+                productDAO.update(updatedProduct);
                 System.out.println("Product is updated successfully");
             } else {
                 System.out.println("Product does not exist");
@@ -41,8 +43,8 @@ public class ProductService {
         }
     }
     public void deleteProduct(Product product){
-        if(ProductDAO.getProductbyId(product.getId())!=null){
-            ProductDAO.deleteProduct(product);
+        if(productDAO.getById(product.getId())!=null){
+            productDAO.delete(product.getId());
             System.out.println("Product is deleted successfully");
         }else{
             System.out.println("The product you are trying to delete does not already exist");
@@ -51,7 +53,7 @@ public class ProductService {
 
     }
     //need to figure out how we can link it to notify the admin or whatever
-    public List<Product> CheckforRestock(){
+    public List<Product> checkForRestock(){
         List<Product> needsRestock= new ArrayList<>();
         for(Product product:Database.products){
             if(product.getQuantity()==0){

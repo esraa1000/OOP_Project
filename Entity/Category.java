@@ -3,9 +3,17 @@ import java.util.List;
 
 public class Category {
 
+    private static int idCounter = 0;
     String name;
     List<Product> productsInCategory;
     int id;
+
+    public Category(){}
+    public Category(String name,List<Product> productsInCategory){
+        this.name=name;
+        this.productsInCategory=productsInCategory;
+        this.id=++idCounter;
+    }
 
     public int getId() {
         return id;
@@ -15,12 +23,7 @@ public class Category {
         this.id = id;
     }
 
-    public Category(){}
-    public Category(String name,List<Product> productsInCategory,int id){
-        this.name=name;
-        this.productsInCategory=productsInCategory;
-        this.id=id;
-    }
+
     public String getName() {
         return name;
     }
