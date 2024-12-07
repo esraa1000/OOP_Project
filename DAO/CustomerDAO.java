@@ -4,14 +4,14 @@ import Database.Database;
 
 import java.util.List;
 
-public class CustomerDAO {
+public class CustomerDAO implements GenericDAO<Customer>{
 
-    public void addCustomer(Customer customer){
+    public void add(Customer customer){
         Database.customers.add(customer);
 
     }
 
-    public Customer getCustomerById(int id){
+    public Customer getById(int id){
         for(Customer c: Database.customers){
             if(c.getCustomerId()==id){
                 return c;
@@ -20,11 +20,9 @@ public class CustomerDAO {
         return null;
     }
 
-    public List<Customer> getAllCustomers(){
-        return Database.customers;
-    }
 
-    public void updateCustomer(Customer customer){
+
+    public void update(Customer customer){
         for(Customer c: Database.customers){
             if(c.getCustomerId()==customer.getCustomerId()){
                 //need to figure out a way to update the username, password and dataOfBirth as well
@@ -37,8 +35,21 @@ public class CustomerDAO {
         }
     }
 
-    public void deleteCustomer(int customerId){
+    public void delete(int customerId){
         Database.customers.removeIf(c -> c.getCustomerId() == customerId);
+    }
+
+    public Customer getCustomerByUsername(String username){
+        for(Customer customer: Database.customers){
+            if((customer.getUsername()).equals(username))return customer;
+        }
+
+        return null;
+
+    }
+
+    public List<Customer> getAllCustomers(){
+        return Database.customers;
     }
 
 

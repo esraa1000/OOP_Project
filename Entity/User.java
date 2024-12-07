@@ -3,7 +3,7 @@ package Entity;
 import java.util.Date;
 
 public abstract class User {
-    private int userId;
+
     private String username;
     private String password;
     private Date dateOfBirth;
@@ -16,20 +16,6 @@ public abstract class User {
         this.dateOfBirth=dateOfBirth;
     }
 
-    public User(int userId, String username, String password, Date dateOfBirth){
-        this.userId=userId;
-        this.username=username;
-        this.password=password;
-        this.dateOfBirth=dateOfBirth;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public Date getDateOfBirth() {
         return dateOfBirth;
@@ -50,8 +36,9 @@ public abstract class User {
     public void setDateOfBirth(Date dateOfBirth){
         this.dateOfBirth=dateOfBirth;
     }
-
-    public String getUsername() {
+    public String getUsername(){
         return username;
     }
+
+
 }

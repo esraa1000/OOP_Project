@@ -3,19 +3,24 @@ package Entity;
 import java.util.Date;
 
 public class Admin extends User{
+    private static int idCounter = 0; // static counter for generating IDs
     private int adminId;
     private String role;
     private double workingHours;
 
-    public Admin(){}
+    public Admin(){
+        this.adminId=++idCounter;
+    }
 
     public Admin(String username, String password, Date dateOfBirth){
         super(username,password,dateOfBirth);
+        this.adminId=++idCounter;
 
     }
 
-    public Admin(int userId,String username, String password, Date dateOfBirth,int adminId, String role, double workingHours){
-        super(userId,username,password,dateOfBirth);
+    public Admin(String username, String password, Date dateOfBirth,int adminId, String role, double workingHours){
+        super(username,password,dateOfBirth);
+        this.adminId=++idCounter;
         this.adminId=adminId;
         this.role=role;
         this.workingHours=workingHours;
@@ -44,4 +49,5 @@ public class Admin extends User{
     public void setAdminId(int adminId) {
         this.adminId = adminId;
     }
+
 }

@@ -3,10 +3,14 @@ package Entity;
 import java.util.List;
 
 public class Cart {
+    private static int idCounter = 0; // static counter for generating IDs
     private List<Product> addedProducts;
     private double totalPrice;
     private int cartId;
 
+    public Cart(){
+        this.cartId=++idCounter;
+    }
     public double getTotalPrice() {
         return totalPrice;
     }

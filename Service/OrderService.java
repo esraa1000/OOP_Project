@@ -2,8 +2,6 @@ package Service;
 import DAO.OrderDAO;
 import Entity.Order;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class OrderService {
   private final OrderDAO orderDAO;
@@ -18,8 +16,8 @@ public class OrderService {
           return;
       }
 
-      if (orderDAO.getOrderById(order.getOrderId()) == null) {
-          orderDAO.addOrder(order);
+      if (orderDAO.getById(order.getOrderId()) == null) {
+          orderDAO.add(order);
           System.out.println("Order has been placed successfully.");
       } else {
           System.out.println("An order with this ID already exists.");
