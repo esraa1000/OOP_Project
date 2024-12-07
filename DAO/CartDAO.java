@@ -33,12 +33,12 @@ public class CartDAO implements GenericDAO<Cart> {
         }
     }
 
-    public void add(Cart cart){
-    for (Cart ExistingCart : Database.carts){      //check if the cart exists
-        if(ExistingCart.getCartId() == cart.getCartId()){
-            throw new IllegalArgumentException("cart with ID " + cart.getCartId() + "already exists");
-        } else{
-            Database.carts.add(cart);
+    public void add(Cart cart) {
+        for (Cart ExistingCart : Database.carts) { // check if the cart exists
+            if (ExistingCart.getCartId() == cart.getCartId()) {
+                throw new IllegalArgumentException("cart with ID " + cart.getCartId() + " already exists");
+            } else {
+                Database.carts.add(cart);
             }
         }
     }
