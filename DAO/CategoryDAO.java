@@ -1,6 +1,7 @@
 package DAO;
 import Database.Database;
 import Entity.Category;
+import Entity.Product;
 
 import java.util.List;
 
@@ -33,13 +34,30 @@ public class CategoryDAO implements GenericDAO<Category> {
 
     }
     public void delete(int id){
-        Database.categories.removeIf(category -> category.getId() == id);
+        for(Category category:Database.categories){
+            if(category.getId()==id){
+                Database.categories.remove(category);
+            }
+        }
     }
 
-    public static List<Category> getAllCategories(){
-
+    public List<Category> getAllCategories(){
         return Database.categories;
     }
+    public void getCategoriesInfo(List<Category> categories) {
+        for (Category category : categories) {
+            System.out.println("Category ID: " + category.getId() +
+                    ", Name: " + category.getName() +
+                    ",Products in category: "+ category.getProductsInCategory());
+        }
+
+    }
+    public boolean isValidCategory(Category category){
+        return category != null && category.getId() >= 0 &&
+                category.getName() != null && category.getProductsInCategory()!= null;
+    }
+
+
 
 
 }
