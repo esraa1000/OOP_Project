@@ -26,6 +26,12 @@ public class Admin extends User{
         this.workingHours=workingHours;
     }
 
+    public Admin(String username, String password, Date dateOfBirth, String role, int workingHours) {
+        super(username,password,dateOfBirth);
+        this.role=role;
+        this.workingHours=workingHours;
+    }
+
     public String getRole() {
         return role;
     }

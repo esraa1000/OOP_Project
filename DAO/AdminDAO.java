@@ -2,6 +2,7 @@ package DAO;
 import Database.Database;
 import Entity.Admin;
 
+import java.util.Date;
 import java.util.List;
 
 public class AdminDAO implements GenericDAO<Admin> {
@@ -54,6 +55,13 @@ public class AdminDAO implements GenericDAO<Admin> {
 
     public String getPassword(Admin admin){
         return admin.getPassword();
+    }
+
+    public void createNewAdmin(String username, String password, Date dateOfBirth,String role,int workingHours){
+        Admin admin=new Admin(username,password,dateOfBirth,role,workingHours);
+        Database.admins.add(admin);
+
+
     }
 
 

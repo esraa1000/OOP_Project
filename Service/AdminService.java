@@ -1,7 +1,7 @@
 package Service;
 import DAO.AdminDAO;
 import Entity.Admin;
-import Utility.ValidationUtils;
+
 
 
 import java.util.Date;
@@ -19,10 +19,6 @@ public class AdminService extends UserService {
             return;
 
         }
-
-        boolean validPassword= ValidationUtils.passwordValidator(password);
-        if(!validPassword)return;
-
 
 
         Admin admin=adminDAO.getAdminByUsername(username);
@@ -51,6 +47,11 @@ public class AdminService extends UserService {
             return;
         }
 
+        if(!(UserService.isValidUsername(username)))return;
+
+
+        if(!(UserService.isValidPassword(password)))return;
+
 
 
         Admin admin= adminDAO.getAdminByUsername(username);
@@ -77,18 +78,13 @@ public class AdminService extends UserService {
             return;
         }
 
-        adminSignUp(role,workingHours,newAdmin);
-
-        adminDAO.add(newAdmin);
+        adminDAO.createNewAdmin(username,password,dateOfBirth,role,workingHours);
+        System.out.println("Signup successful!");
 
     }
 
 
 
-    public void adminSignUp(String role, int workingHours,Admin admin) {
-        admin.setRole(role);
-        admin.setWorkingHours(workingHours);
-    }
+
 
 }
-
