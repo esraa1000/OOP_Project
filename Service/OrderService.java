@@ -29,8 +29,8 @@ public class OrderService {
           System.out.println("order details are invalid");
           return;
       }
-      if (orderDAO.getOrderById((order.getOrderId())) != null){
-          orderDAO.updateOrder(order);
+      if (orderDAO.getById((order.getOrderId())) != null){
+          orderDAO.update(order);
           System.out.println("order has been updated successfully");
       }
       else {
@@ -41,8 +41,8 @@ public class OrderService {
      if (orderId < 0){
          System.out.println("invalid order ID");
      }
-     if (orderDAO.getOrderById(orderId) != null){
-         orderDAO.deleteOrder(orderId);
+     if (orderDAO.getById(orderId) != null){
+         orderDAO.delete(orderId);
          System.out.println("order has been cancelled successfully");
      }
      else {
@@ -53,7 +53,7 @@ public class OrderService {
   if (orderId < 0){
       System.out.println("invalid Order ID");
   }
- Order order = orderDAO.getOrderById((orderId));
+ Order order = orderDAO.getById((orderId));
   if (order != null){
       return order;
   } else{

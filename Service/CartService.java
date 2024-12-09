@@ -10,10 +10,12 @@ import Entity.Order;
 import Database.Database;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class CartService {
     private CartDAO cartDAO = new CartDAO();
     private CustomerDAO customerDAO = new CustomerDAO();
+    private OrderDAO orderDAO = new OrderDAO();
 
 
     //constructor
@@ -141,18 +143,15 @@ public class CartService {
         double tax = calculateTax(subtotal - discount);
         double shippingFee = calculateShippingFee();
         double checkoutTotal = subtotal - discount + tax + shippingFee;
+        System.out.println("Please Enter the payment method");
+        Scanner scanner = new Scanner(System.in);
+        String paymentMethod=scanner.nextLine();
 
         // Create order entity to pass it to the DAO
-        Order newOrder = new Order();
-        newOrder.setOrderId(generateOrderId());
-        newOrder.setUserId(userId);
-        newOrder.setDiscount(discount);
-        newOrder.setTax(tax);
-        newOrder.setShippingFee(shippingFee);
-        newOrder.setCheckOutTotal(checkoutTotal);
-        newOrder.setPaymentMethod("Credit Card");
-        OrderDAO orderDAO = new OrderDAO();
-        orderDAO.add(newOrder);
+
+        orderDAO.createNewOrder(userId,discount,tax,shippingFee,checkoutTotal,paymentMethod);
+
+
 
         // Clear the cart
         products.clear();
@@ -162,7 +161,7 @@ public class CartService {
         cartDAO.update(userCart);
 
         // Print the order details
-        System.out.println("Order placed successfully! Order ID: " + newOrder.getOrderId());
+        System.out.println("Order placed successfully!");
         System.out.println("Checkout Total: " + checkoutTotal);
     }
 
@@ -180,10 +179,7 @@ public class CartService {
         return 5.0;
     }
 
-    private int generateOrderId() {
-        OrderDAO orderDAO = new OrderDAO();
-        return orderDAO.getAllOrders().size() + 1;
-    }
+
 
     //update only interests
     //After placing the order we should update the balance
@@ -212,7 +208,7 @@ public class CartService {
         List<Product> products = userCart.getAddedProducts();
         for (Product product : products) {
             if (product.getCategory() != null) { // Ensure product category exists
-                customer.addInterest(product.getCategory().getName()); // Assuming `addInterest` is implemented
+                customerDAO.addInterest(product.getCategory().getName(),customer); // Assuming `addInterest` is implemented
             }
         }
 

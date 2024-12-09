@@ -59,11 +59,7 @@ public class Customer extends User {
         this.interests = interests;
     }
 
-    public void addInterest(String category) {
-        if (category != null && !category.isEmpty() && !interests.contains(category)) {
-            interests.add(category); //add only if not already present
-        }
-    }
+
 
     public int getCustomerId() {
         return customerId;
