@@ -42,4 +42,15 @@ public class CartDAO implements GenericDAO<Cart> {
             }
         }
     }
+
+    public int getDefaultCartId(int userId) {
+        for (Cart cart : Database.carts) { // Assuming `carts` is a list of all carts
+            if (cart.getUserId() == userId) { // Filter carts by `userId`
+                return cart.getCartId();
+            }
+        }
+        throw new IllegalStateException("No cart found for user ID: " + userId);
+    }
+
+
 }

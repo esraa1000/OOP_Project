@@ -1,6 +1,6 @@
 package Service;
 import DAO.ProductDAO;
-import Database.Database;
+import Entity.Category;
 import Entity.Product;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,18 +8,8 @@ import java.util.List;
 public class ProductService {
 
     ProductDAO productDAO=new ProductDAO();
-
-    public List<Product> getAllProducts(){
-        if(Database.products.isEmpty()){
-        System.out.println("There are no Products available");
-    }else{
-        System.out.println("The products available are :");
-    }
-        return Database.products;
-
-    }
     public void addProduct(Product product){
-        if(product!=null && product.getId()>=0 && product.getName()!=null ) {
+        if(productDAO.isValidProduct(product) ) {
             if (productDAO.getById(product.getId()) == null) {
                 productDAO.add(product);
                 System.out.println("Product is added successfully");
@@ -31,7 +21,7 @@ public class ProductService {
         }
     }
     public void updateProduct(Product updatedProduct){
-        if(updatedProduct!=null && updatedProduct.getId()>=0 && updatedProduct.getName()!=null ) {
+        if(productDAO.isValidProduct(updatedProduct)) {
             if (productDAO.getById(updatedProduct.getId()) != null) {
                 productDAO.update(updatedProduct);
                 System.out.println("Product is updated successfully");
@@ -42,38 +32,87 @@ public class ProductService {
             System.out.println("Uptaded Product details are invalid ");
         }
     }
-    public void deleteProduct(Product product){
-        if(productDAO.getById(product.getId())!=null){
-            productDAO.delete(product.getId());
+    public void deleteProduct(int id ){
+        if(productDAO.getAllProducts().isEmpty()){
+            System.out.println("No Products available to delete");
+        }
+        if(productDAO.getById(id)!=null){
+            productDAO.delete(id);
             System.out.println("Product is deleted successfully");
         }else{
             System.out.println("The product you are trying to delete does not already exist");
-
         }
 
     }
     //need to figure out how we can link it to notify the admin or whatever
-    public List<Product> checkForRestock(){
-        List<Product> needsRestock= new ArrayList<>();
-        for(Product product:Database.products){
-            if(product.getQuantity()==0){
-                needsRestock.add(product);
-            }
-        }
-        if(needsRestock.isEmpty()){
+    public void checkForRestock(){
+        if(productDAO.checkForRestock().isEmpty()){
             System.out.println("All Products are sufficiently stocked");
         }else{
             System.out.println("The following products needs restocking");
-            for (Product product : needsRestock) {
-                System.out.println("Product ID: " + product.getId() +
-                        ", Name: " + product.getName() +
-                        ", Current Quantity: " + product.getQuantity());
+            productDAO.getProductsInfo(productDAO.checkForRestock());
+        }
+    }
+    public void getAllProducts() {
+        List<Product> products = productDAO.getAllProducts();
+        if (products.isEmpty()) {
+            System.out.println("There are no products available.");
+        } else {
+            System.out.println("The products available are:");
+           productDAO.getProductsInfo(products); // Print each product
+        }
+
+    }
+    public void searchProducts(String keyword) {
+        if(keyword==null){
+            System.out.println("Please enter the category you want");
+            return;
+        }
+        if(productDAO.getAllProducts().isEmpty()){
+            System.out.println("No Products available right now");
+            return;
+        }
+        List<Product> searchResults = new ArrayList<>();
+        for (Product product : productDAO.getAllProducts()) {
+            if (product.getName().toLowerCase().contains(keyword.toLowerCase())) {
+                searchResults.add(product);
             }
         }
-        return needsRestock;
+        if(searchResults.isEmpty()){
+            System.out.println("No products match your search");
+        }else {
+            productDAO.getProductsInfo(searchResults);
+        }
+    }
+    public void filterByCategory(Category category) {
+        if (category == null) {
+            System.out.println("Category cannot be null");
+            return;
+        }
+
+        if (productDAO.getAllProducts().isEmpty()) {
+            System.out.println("No products available in the database.");
+            return;
+        }
+        List<Product> filteredProducts = new ArrayList<>();
+        for (Product product : productDAO.getAllProducts()) {
+            if (product.getCategory().equals(category)) {
+                filteredProducts.add(product);
+            }
+        }
+        if(filteredProducts.isEmpty()){
+            System.out.println("No Products available for this category");
+        }else{
+            productDAO.getProductsInfo(filteredProducts);
+        }
+
     }
 
 
 
 
 }
+
+
+
+

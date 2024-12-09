@@ -2,6 +2,7 @@ package Service;
 
 import DAO.CartDAO;
 import DAO.OrderDAO;
+import DAO.CustomerDAO;
 import Entity.Cart;
 import Entity.Product;
 import Entity.Customer;
@@ -11,17 +12,25 @@ import Database.Database;
 import java.util.List;
 
 public class CartService {
-    private final CartDAO cartDAO;
+    private CartDAO cartDAO = new CartDAO();
+    private CustomerDAO customerDAO = new CustomerDAO();
+
 
     //constructor
-    public CartService(CartDAO cartDAO) {
+    public CartService(CartDAO cartDAO, CustomerDAO customerDAO) {
         this.cartDAO = cartDAO;
+        this.customerDAO = customerDAO;
     }
 
-    //Methods
-    public void addToCart(String productName, int quantity) {
 
-        //Check if the product in the database
+    public void addToCart(int userId, String productName, int quantity) {
+        //get the cart of this user
+        Cart userCart = cartDAO.getById(cartDAO.getDefaultCartId(userId));
+        if (userCart == null) {
+            throw new IllegalStateException("No cart found for user with ID " + userId);
+        }
+
+        //check if the product exists in the supermarket database
         Product databaseProduct = null;
         for (Product product : Database.products) {
             if (product.getName().equals(productName)) {
@@ -34,12 +43,10 @@ public class CartService {
             throw new IllegalArgumentException("Product " + productName + " not found in the supermarket.");
         }
 
-        //get the first cart
-        Cart cart = cartDAO.getAllCarts().get(0); //if we have a single cart
-        List<Product> products = cart.getAddedProducts();
-
-        //check if the product was previously added to the cart or not
+        // add or update the product in the cart
+        List<Product> products = userCart.getAddedProducts();
         boolean inCart = false;
+
         for (Product product : products) {
             if (product.getName().equals(productName)) {
                 product.setQuantity(product.getQuantity() + quantity);
@@ -50,106 +57,117 @@ public class CartService {
 
         if (!inCart) {
             Product newProduct = new Product();
-            newProduct.setName(databaseProduct.getName());
+            newProduct.setName(productName);
             newProduct.setPrice(databaseProduct.getPrice());
             newProduct.setQuantity(quantity);
             products.add(newProduct);
         }
 
-        //update the cart's total price
-        double updatedPrice = 0;
+        // update the cart's total price
+        double updatedTotalPrice = 0.0;
         for (Product product : products) {
-            updatedPrice += product.getPrice() * product.getQuantity();
+            updatedTotalPrice += product.getPrice() * product.getQuantity();
         }
+        userCart.setTotalPrice(updatedTotalPrice);
 
-        cart.setTotalPrice(updatedPrice);
-
-        cartDAO.updateCart(cart);
+        // update the cart in the database
+        cartDAO.update(userCart);
     }
 
-    public void removeFromCart(String productName, int quantity) {
-        Cart cart = cartDAO.getAllCarts().get(0);
-        List<Product> products = cart.getAddedProducts();
 
-        //check if the product in cart
-        Product cartProduct = null;
+    public void removeFromCart(int userId, String productName, int quantity) {
+        //get the cart of this user
+        Cart userCart = cartDAO.getById(cartDAO.getDefaultCartId(userId));
+        if (userCart == null) {
+            throw new IllegalStateException("No cart found for user with ID " + userId);
+        }
+
+        // remove or update the product in the cart
+        List<Product> products = userCart.getAddedProducts();
+        Product productToRemove = null;
+
         for (Product product : products) {
             if (product.getName().equals(productName)) {
-                cartProduct = product;
+                if (product.getQuantity() > quantity) {
+                    product.setQuantity(product.getQuantity() - quantity);
+                } else {
+                    productToRemove = product;
+                }
                 break;
             }
         }
 
-        if (cartProduct == null) {
-            throw new IllegalArgumentException("Product " + productName + " not found in the cart.");
+        if (productToRemove != null) {
+            products.remove(productToRemove);
         }
 
-        //if there will be some of this product left in the cart
-        if (cartProduct.getQuantity() - quantity > 0)
-            cartProduct.setQuantity(cartProduct.getQuantity() - quantity);
-        else {
-            products.remove(cartProduct);
-        }
-
-        //update the price
-        double updatedPrice = 0;
+        // update the cart's total price
+        double updatedTotalPrice = 0.0;
         for (Product product : products) {
-            updatedPrice += product.getPrice() * product.getQuantity();
+            updatedTotalPrice += product.getPrice() * product.getQuantity();
+        }
+        userCart.setTotalPrice(updatedTotalPrice);
+
+        //update the cart in the database
+        cartDAO.update(userCart);
+    }
+
+    public List<Product> viewProducts(int userId) {
+        //get the cart of this user
+        Cart userCart = cartDAO.getById(cartDAO.getDefaultCartId(userId));
+        if (userCart == null) {
+            throw new IllegalStateException("No cart found for user with ID " + userId);
         }
 
-        cart.setTotalPrice(updatedPrice);
-
-        cartDAO.updateCart(cart);
-
-    }
-
-    public List<Product> viewProducts() {
-        Cart cart = cartDAO.getAllCarts().get(0);
-        return cart.getAddedProducts();
+        return userCart.getAddedProducts();
     }
 
 
-    public void placeOrder() {
-        Cart cart = cartDAO.getAllCarts().get(0); // Assuming a single cart
-        List<Product> products = cart.getAddedProducts();
+    public void placeOrder(int userId) {
+        //get the cart for this user
+        Cart userCart = cartDAO.getById(cartDAO.getDefaultCartId(userId));
+        if (userCart == null) {
+            throw new IllegalStateException("No cart found for user with ID " + userId);
+        }
 
+        List<Product> products = userCart.getAddedProducts();
         if (products.isEmpty()) {
             throw new IllegalStateException("Cannot place an order. The cart is empty.");
         }
 
-        //calculate order totals
-        double subtotal = cart.getTotalPrice();
+        // Calculate order totals
+        double subtotal = userCart.getTotalPrice();
         double discount = calculateDiscount(subtotal);
         double tax = calculateTax(subtotal - discount);
         double shippingFee = calculateShippingFee();
         double checkoutTotal = subtotal - discount + tax + shippingFee;
 
-        //ceate the order
-        Order order = new Order();
-        //We can replace all this with arguments constructor??
-        order.setOrderId(generateOrderId());
-        order.setUserId(1); // Assuming a single user, How to handle multiple users??
-        order.setDiscount(discount);
-        order.setTax(tax);
-        order.setShippingFee(shippingFee);
-        order.setCheckOutTotal(checkoutTotal);
-        order.setPaymentMethod("Credit Card"); //Default payment methods unless the user sets it in the main
-
-        //add the order to the database
+        // Create order entity to pass it to the DAO
+        Order newOrder = new Order();
+        newOrder.setOrderId(generateOrderId());
+        newOrder.setUserId(userId);
+        newOrder.setDiscount(discount);
+        newOrder.setTax(tax);
+        newOrder.setShippingFee(shippingFee);
+        newOrder.setCheckOutTotal(checkoutTotal);
+        newOrder.setPaymentMethod("Credit Card");
         OrderDAO orderDAO = new OrderDAO();
-        orderDAO.addOrder(order);
+        orderDAO.add(newOrder);
 
-        //clear the cart
+        // Clear the cart
         products.clear();
-        cart.setTotalPrice(0.0);
-        cartDAO.updateCart(cart);
+        userCart.setTotalPrice(0.0);
 
-        //print the order details
-        System.out.println("Order placed successfully! Order ID: " + order.getOrderId());
+        // Update the cart in the database
+        cartDAO.update(userCart);
+
+        // Print the order details
+        System.out.println("Order placed successfully! Order ID: " + newOrder.getOrderId());
         System.out.println("Checkout Total: " + checkoutTotal);
     }
 
-    //auxillary functions for place order
+
+    //helper functions for place order
     private double calculateDiscount(double subtotal) {
         return subtotal > 100 ? subtotal * 0.10 : 0.0; //if the subtotal larger than 100 the discount will be applied
     }
@@ -167,30 +185,38 @@ public class CartService {
         return orderDAO.getAllOrders().size() + 1;
     }
 
-//I changed the arguments -> no arg, update only interests
-//After placing the order we should update the balance
-public void updateCustomerDetails() {
-    Cart cart = cartDAO.getAllCarts().get(0); //assume single cart ???
-    List<Product> products = cart.getAddedProducts();
+    //update only interests
+    //After placing the order we should update the balance
 
-
-    //check if the cart have a customer
-    Customer customer = null;
-    for (Customer c : Database.customers) {
-        if (c.getCart() != null && c.getCart().getCartId() == cart.getCartId()) {
-            customer = c;
-            break;
+    public void updateCustomerDetails(int userId) {
+        // get the user of this cart
+        Cart userCart = cartDAO.getById(cartDAO.getDefaultCartId(userId));
+        if (userCart == null) {
+            throw new IllegalStateException("No cart found for user with ID " + userId);
         }
-    }
 
-    if (customer == null) {
-        throw new IllegalStateException("No customer associated with the current cart.");
-    }
+        // Fetch the customer associated with the user
+        Customer customer = null;
+        for (Customer c : Database.customers) {
+            if (c.getCustomerId() == userId) {
+                customer = c;
+                break;
+            }
+        }
 
-    for (Product product : cart.getAddedProducts()) {
-       // customer.addInterest(product.getCategory()); // addInterest is not in customer entity yet????
-    }
+        if (customer == null) {
+            throw new IllegalStateException("No customer found with ID " + userId);
+        }
 
-    System.out.println("Customer interests updated successfully for Customer ID: " + customer.getCustomerId());
+        // Update customer interests based on cart contents
+        List<Product> products = userCart.getAddedProducts();
+        for (Product product : products) {
+            if (product.getCategory() != null) { // Ensure product category exists
+                customer.addInterest(product.getCategory().getName()); // Assuming `addInterest` is implemented
+            }
+        }
+
+        customerDAO.update(customer);
+        System.out.println("Customer interests updated successfully for Customer ID: " + customer.getCustomerId());
+    }
 }
-
