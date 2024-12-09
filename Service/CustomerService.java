@@ -26,17 +26,16 @@ public class CustomerService extends UserService{
             return;
         }
 
-        Customer newCustomer= new Customer(username,password,dateOfBirth);
+
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("What is your address? ");
         String address=scanner.nextLine();
-        System.out.println();
+        customerDAO.createNewCustomer(username,password,dateOfBirth,address);
 
-        customerSignUp(address,newCustomer);
 
-        customerDAO.add(newCustomer);
+
 
 
     }
@@ -61,18 +60,11 @@ public class CustomerService extends UserService{
     }
 
 
-    public void customerSignUp(String address,Customer customer){
-        customer.setAddress(address);
 
-    }
 
     public void addToCart(String username,Product product){
 
-        Customer customer= customerDAO.getCustomerByUsername(username);
 
-        if(customer==null){
-            System.out.println();
-        }
 
 
     }

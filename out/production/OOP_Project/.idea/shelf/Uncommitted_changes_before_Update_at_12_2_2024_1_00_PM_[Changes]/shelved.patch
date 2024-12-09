@@ -1,0 +1,50 @@
+Index: Entity/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Entity;\r\n\r\nimport java.util.Date;\r\n\r\npublic class User {\r\n    private int userId;\r\n    private String username;\r\n    private String password;\r\n    private Date dateOfBirth;\r\n\r\n    public User(){}\r\n\r\n    public User(int userId, String username, String password, Date dateOfBirth){\r\n        this.userId=userId;\r\n        this.username=username;\r\n        this.password=password;\r\n        this.dateOfBirth=dateOfBirth;\r\n    }\r\n\r\n    public int getUserId() {\r\n        return userId;\r\n    }\r\n\r\n    public void setUserId(int userId) {\r\n        this.userId = userId;\r\n    }\r\n\r\n    public Date getDateOfBirth() {\r\n        return dateOfBirth;\r\n    }\r\n\r\n    public String getPassword(){\r\n        return password;\r\n    }\r\n\r\n    public String getUsername(){\r\n        return username;\r\n    }\r\n\r\n    public void setUsername(String username){\r\n        this.username=username;\r\n    }\r\n\r\n    public void setPassword(String password){\r\n        this.password=password;\r\n    }\r\n\r\n    public void setDateOfBirth(Date dateOfBirth){\r\n        this.dateOfBirth=dateOfBirth;\r\n    }\r\n\r\n\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Entity/User.java b/Entity/User.java
+--- a/Entity/User.java	(revision 447a9320ef3c26fce2355cc5422390be3db6feaf)
++++ b/Entity/User.java	(date 1733053780896)
+@@ -2,7 +2,7 @@
+ 
+ import java.util.Date;
+ 
+-public class User {
++public abstract class User {
+     private int userId;
+     private String username;
+     private String password;
+Index: Service/UserService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Service/UserService.java b/Service/UserService.java
+new file mode 100644
+--- /dev/null	(date 1733053780854)
++++ b/Service/UserService.java	(date 1733053780854)
+@@ -0,0 +1,6 @@
++package Service;
++
++
++public class UserService {
++
++}
+Index: DAO/UserDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/DAO/UserDAO.java b/DAO/UserDAO.java
+new file mode 100644
+--- /dev/null	(date 1733052819774)
++++ b/DAO/UserDAO.java	(date 1733052819774)
+@@ -0,0 +1,5 @@
++package DAO;
++
++
++public class UserDAO {
++}

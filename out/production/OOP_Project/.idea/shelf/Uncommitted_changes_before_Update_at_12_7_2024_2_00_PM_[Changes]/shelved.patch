@@ -1,0 +1,99 @@
+Index: Service/CustomerService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Service;\r\n\r\nimport java.util.Date;\r\nimport java.util.List;\r\n\r\nimport DAO.UserDAO;\r\n\r\npublic class CustomerService extends UserService{\r\n\r\n    public void signUp(String username, String password, Date dateOfBirth){}\r\n    public void logIn(String username,String password){}\r\n\r\n    public void customerSignUp(List<String> interests){}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Service/CustomerService.java b/Service/CustomerService.java
+--- a/Service/CustomerService.java	(revision a2d9939e52a4de598bee1c1c5a5e23779b08f6fc)
++++ b/Service/CustomerService.java	(date 1733572793411)
+@@ -1,15 +1,83 @@
+ package Service;
+ 
+ import java.util.Date;
+-import java.util.List;
++import java.util.Scanner;
+ 
+-import DAO.UserDAO;
++import DAO.*;
++import Entity.Customer;
++import Entity.Product;
++
+ 
+ public class CustomerService extends UserService{
+ 
+-    public void signUp(String username, String password, Date dateOfBirth){}
+-    public void logIn(String username,String password){}
++
++    private final CustomerDAO customerDAO= new CustomerDAO();
++
++    public void signUp(String username, String password, Date dateOfBirth){
++
++        if(!(UserService.isValidUsername(username)))return;
++
++
++        if(!(UserService.isValidPassword(password)))return;
++
++        Customer customer= customerDAO.getCustomerByUsername(username);
++        if(customer!=null){
++            System.out.println("Username already taken");
++            return;
++        }
++
++        Customer newCustomer= new Customer(username,password,dateOfBirth);
++
++        Scanner scanner = new Scanner(System.in);
++
++        System.out.println("What is your address? ");
++        String address=scanner.nextLine();
++        System.out.println();
++
++        customerSignUp(address,newCustomer);
++
++        customerDAO.add(newCustomer);
++
++
++    }
++    public void logIn(String username,String password){
++
++
++
++        Customer customer=customerDAO.getCustomerByUsername(username);
++
++        if(customer==null){
++            System.out.println("Account not found, please make sure the username is correct or try to sign up if you're new here.");
++            return;
++        }
++
++        if(!((customer.getPassword()).equals(password))){
++            System.out.println("Wrong password entered.");
++            return;
++        }
++
++        System.out.println("Login successful!");
++
++    }
++
++
++    public void customerSignUp(String address,Customer customer){
++        customer.setAddress(address);
+ 
+-    public void customerSignUp(List<String> interests){}
++    }
++
++    public void addToCart(String username,Product product){
++
++        Customer customer= customerDAO.getCustomerByUsername(username);
++
++        if(customer==null){
++            System.out.println();
++        }
++
++
++    }
++
++
++
+ 
+ }
