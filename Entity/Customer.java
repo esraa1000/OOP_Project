@@ -35,6 +35,13 @@ public class Customer extends User {
         this.customerId=++idCounter;
     }
 
+    public Customer( String username, String password, Date dateOfBirth, String address) {
+        super(username, password, dateOfBirth);
+        this.address = address;
+        this.customerId=++idCounter;
+    }
+
+
     public double getBalance() {
         return balance;
     }
