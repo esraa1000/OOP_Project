@@ -21,6 +21,10 @@ public class CategoryDAO implements GenericDAO<Category> {
     public void add(Category category){
         Database.categories.add(category);
     }
+    public Category createCategory(String name,List<Product> products ){
+             Category category=new Category(name,products);
+             return category;
+    }
 
     public void update(Category updatedCategory) {
         for (Category category : Database.categories) {

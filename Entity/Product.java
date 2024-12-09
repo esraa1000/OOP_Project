@@ -55,4 +55,12 @@ public class Product {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+    public static int getIdCounter() {
+        return idCounter;
+    }
+
+    public static void setIdCounter(int idCounter) {
+        Product.idCounter = idCounter;
+    }
 }

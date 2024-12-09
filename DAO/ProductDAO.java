@@ -1,5 +1,6 @@
 package DAO;
 import Database.Database;
+import Entity.Category;
 import Entity.Product;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,10 @@ public class ProductDAO implements GenericDAO<Product> {
     //adding a product to our database
     public void add(Product product) {
         Database.products.add(product);
+    }
+    public Product createProduct(String name, double price, Category category, int quantity){
+        Product product=new Product(name,price,category,quantity);
+         return product;
     }
 
     public void update(Product updatedProduct) {

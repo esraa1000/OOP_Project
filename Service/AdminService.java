@@ -1,16 +1,27 @@
 package Service;
 import DAO.AdminDAO;
+import DAO.CategoryDAO;
+import DAO.ProductDAO;
 import Entity.Admin;
-
+import Entity.Category;
+import Entity.Product;
+import Service.ProductService;
+import Service.CategoryService;
 
 
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 
 public class AdminService extends UserService {
 
     private final AdminDAO adminDAO= new AdminDAO();
+    private final ProductService productService= new ProductService();
+    private final CategoryService categoryService=new CategoryService();
+    private final CategoryDAO categoryDAO=new CategoryDAO();
+
+
 
     public void logIn(String username, String password)  {
 
@@ -82,6 +93,17 @@ public class AdminService extends UserService {
         System.out.println("Signup successful!");
 
     }
+    public void CreateProduct(String name, double price, Category category, int quantity){
+       productService.createProduct(name,price,category,quantity);
+    }
+    public void CreateCategory(String name, List<Product> products){
+        categoryService.createCategory(name,products);
+    }
+
+
+
+
+
 
 
 

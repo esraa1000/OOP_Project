@@ -1,6 +1,10 @@
 package Service;
 import DAO.CategoryDAO;
 import Entity.Category;
+import Entity.Product;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CategoryService {
@@ -15,6 +19,16 @@ public class CategoryService {
             }
         } else {
             System.out.println("Invalid category details.");
+        }
+    }
+    public void createCategory(String name,List<Product> products ){
+        Category category=categoryDAO.createCategory(name, products);
+        if(categoryDAO.isValidCategory(category)){
+            categoryDAO.add(category);
+        }
+        else{
+            System.out.println("Category details are invalid ");
+            Category.setIdCounter(Category.getIdCounter()-1);
         }
     }
 

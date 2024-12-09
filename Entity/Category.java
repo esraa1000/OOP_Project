@@ -39,4 +39,12 @@ public class Category {
     public void setProductsInCategory(List<Product> productsInCategory) {
         this.productsInCategory = productsInCategory;
     }
+
+    public static void setIdCounter(int idCounter) {
+        Category.idCounter = idCounter;
+    }
+
+    public static int getIdCounter() {
+        return idCounter;
+    }
 }
