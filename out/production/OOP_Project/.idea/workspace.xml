@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9b6befb7-6687-4f03-a88c-be32b1d015c1" name="Changes" comment="added service layer">
+    <list default="true" id="6fff223c-5742-417a-b1fe-b66385cef244" name="Changes" comment="Cart service implementation version 1">
+      <change afterPath="$PROJECT_DIR$/SampleFileGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAO/AdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/AdminDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAO/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/CategoryDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DAO/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/CustomerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAO/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/OrderDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DAO/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/ProductDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Database.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Entity/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Service/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customers.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/customers.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +24,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -27,7 +31,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Renad" />
+        <entry key="$PROJECT_DIR$" value="Naira" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -35,140 +39,59 @@
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;renadibrahim23&quot;
+    &quot;assignee&quot;: &quot;esraa1000&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/esraa1000/OOP_Project.git",
-    "accountId": "456c26c0-14f6-407c-9ba8-0b33109976dd"
-  },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
-    },
-    "owner": "esraa1000",
-    "repository": "OOP_Project"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/esraa1000/OOP_Project.git&quot;,
+    &quot;accountId&quot;: &quot;9fadbdea-e7d9-464c-9588-c85047c9c538&quot;
   }
-}]]></component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
+}</component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
+  &quot;associatedIndex&quot;: 6
 }</component>
-  <component name="ProjectId" id="2pXKBGrQsLOtqE0UkrY9b9I9rgy" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2pg2bc8cvvIgrmGEIqiNa5ZuXGG" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.Main.executor": "Run",
+    "Application.SampleFileGenerator.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Renad",
-    "kotlin-language-version-configured": "true"
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/javaCodes/OOP_Project",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="9b6befb7-6687-4f03-a88c-be32b1d015c1" name="Changes" comment="" />
-      <created>1732906843014</created>
+      <changelist id="6fff223c-5742-417a-b1fe-b66385cef244" name="Changes" comment="" />
+      <created>1733173470032</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1732906843014</updated>
+      <updated>1733173470032</updated>
     </task>
-    <task id="LOCAL-00001" summary="Entity Layer classes: User(Superclass), Customer, admin subclasses. Before the Cart class and enum">
+    <task id="LOCAL-00001" summary="Cart service implementation version 1">
       <option name="closed" value="true" />
-      <created>1733005056283</created>
+      <created>1733526353925</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1733005056283</updated>
+      <updated>1733526353925</updated>
     </task>
-    <task id="LOCAL-00002" summary="Entity Layer classes: User(Superclass), Customer, admin subclasses. Before the Cart class and enum">
+    <task id="LOCAL-00002" summary="Cart service implementation version 1">
       <option name="closed" value="true" />
-      <created>1733005390977</created>
+      <created>1733743371969</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1733005390977</updated>
+      <updated>1733743371969</updated>
     </task>
-    <task id="LOCAL-00003" summary="Entity Layer classes: User(Superclass), Customer, admin subclasses. Before the Cart class and enum">
-      <option name="closed" value="true" />
-      <created>1733006029506</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1733006029506</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Entity Layer classes: User(Superclass), Customer, admin subclasses. Before the Cart class and enum">
-      <option name="closed" value="true" />
-      <created>1733050607522</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1733050607522</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Database Layer">
-      <option name="closed" value="true" />
-      <created>1733051071798</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1733051071798</updated>
-    </task>
-    <task id="LOCAL-00006" summary="First attempt at AdminDAO and CustomerDAO">
-      <option name="closed" value="true" />
-      <created>1733052359540</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1733052359540</updated>
-    </task>
-    <task id="LOCAL-00007" summary="added service layer">
-      <option name="closed" value="true" />
-      <created>1733162303913</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1733162303913</updated>
-    </task>
-    <task id="LOCAL-00008" summary="added service layer">
-      <option name="closed" value="true" />
-      <created>1733511044417</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1733511044417</updated>
-    </task>
-    <task id="LOCAL-00009" summary="added service layer">
-      <option name="closed" value="true" />
-      <created>1733743248573</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1733743248573</updated>
-    </task>
-    <task id="LOCAL-00010" summary="added service layer">
-      <option name="closed" value="true" />
-      <created>1733745138882</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1733745138882</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -183,11 +106,23 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Entity Layer classes: User(Superclass), Customer, admin subclasses. Before the Cart class and enum" />
-    <MESSAGE value="Database Layer" />
-    <MESSAGE value="First attempt at AdminDAO and CustomerDAO" />
-    <MESSAGE value="added service layer" />
-    <option name="LAST_COMMIT_MESSAGE" value="added service layer" />
+    <MESSAGE value="Cart service implementation version 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cart service implementation version 1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Database/Database.java</url>
+          <line>206</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Database/Database.java</url>
+          <line>191</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
