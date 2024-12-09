@@ -18,7 +18,7 @@ public class OrderDAO implements GenericDAO<Order> {
                 return order;
             }
         }
-        throw new IllegalArgumentException("Order with ID " + orderId + " was not found");
+       return null;
     }
 
     public void add(Order order) {
@@ -29,6 +29,7 @@ public class OrderDAO implements GenericDAO<Order> {
         for (int i = 0; i < Database.orders.size(); i++) {
             if (Database.orders.get(i).getOrderId() == order.getOrderId()) {
                 Database.orders.set(i, order);
+                return;
             }
         }
     }
@@ -43,7 +44,7 @@ public class OrderDAO implements GenericDAO<Order> {
                 return new ArrayList<>(customer.getOrders());
             }
         }
-        throw new IllegalArgumentException("Customer with username " + username + " was not found");
+        return new ArrayList<>();
     }
 
     public List<Order> getAllOrders() {
