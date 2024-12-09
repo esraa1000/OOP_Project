@@ -26,18 +26,30 @@ public class CustomerService extends UserService{
             return;
         }
 
-        Customer newCustomer= new Customer(username,password,dateOfBirth);
+
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("What is your address? ");
         String address=scanner.nextLine();
-        System.out.println();
 
-        customerSignUp(address,newCustomer);
 
-        customerDAO.add(newCustomer);
+        while (true) {
+            System.out.print("Enter gender (" + Customer.Gender.getValidValues() + "): ");
+            String input = scanner.nextLine().trim().toUpperCase();
 
+            try {
+                Customer.Gender gender = Customer.Gender.valueOf(input);
+                customerDAO.createNewCustomer(username, password, dateOfBirth, address,gender);
+                break; // Exit loop if input is valid
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input. Please enter one of the following: " + Customer.Gender.getValidValues());
+            }
+
+
+
+
+        }
 
     }
     public void logIn(String username,String password){
@@ -61,18 +73,11 @@ public class CustomerService extends UserService{
     }
 
 
-    public void customerSignUp(String address,Customer customer){
-        customer.setAddress(address);
 
-    }
 
     public void addToCart(String username,Product product){
 
-        Customer customer= customerDAO.getCustomerByUsername(username);
 
-        if(customer==null){
-            System.out.println();
-        }
 
 
     }

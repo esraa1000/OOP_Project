@@ -2,6 +2,7 @@ package DAO;
 import Entity.Customer;
 import Database.Database;
 
+import java.util.Date;
 import java.util.List;
 
 public class CustomerDAO implements GenericDAO<Customer>{
@@ -57,6 +58,11 @@ public class CustomerDAO implements GenericDAO<Customer>{
             customer.getInterests().add(category); //add only if not already present
             customer.setInterests(customer.getInterests());
         }
+    }
+
+    public void createNewCustomer(String username, String password, Date dateOfBirth, String address, Customer.Gender gender){
+        Customer customer=new Customer(username,password,dateOfBirth,address,gender);
+        Database.customers.add(customer);
     }
 
 
