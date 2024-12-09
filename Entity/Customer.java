@@ -59,6 +59,8 @@ public class Customer extends User {
         this.interests = interests;
     }
 
+
+
     public int getCustomerId() {
         return customerId;
     }

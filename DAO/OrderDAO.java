@@ -50,4 +50,16 @@ public class OrderDAO implements GenericDAO<Order> {
         return new ArrayList<>(Database.orders);
     }
 
+    public void createNewOrder(int userId,double discount,double tax,double shippingFee,double checkOutTotal,String paymentMethod){
+        Order newOrder = new Order();
+        newOrder.setUserId(userId);
+        newOrder.setDiscount(discount);
+        newOrder.setTax(tax);
+        newOrder.setShippingFee(shippingFee);
+        newOrder.setCheckOutTotal(checkOutTotal);
+        newOrder.setPaymentMethod(paymentMethod);
+
+        add(newOrder);
+    }
+
 }

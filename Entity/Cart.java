@@ -7,6 +7,8 @@ public class Cart {
     private List<Product> addedProducts;
     private double totalPrice;
     private int cartId;
+    //to connect each user by its cart
+    private int userId;
 
     public Cart(){
         this.cartId=++idCounter;
@@ -23,6 +25,14 @@ public class Cart {
         return cartId;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public void setCartId(int cartId) {
         this.cartId = cartId;
     }
@@ -34,4 +44,11 @@ public class Cart {
     public void setAddedProducts(List<Product> addedProducts) {
         this.addedProducts = addedProducts;
     }
+
+    //public void initializeCartForUser(int userId) {
+    //    Cart cart = new Cart();
+    //    cart.setUserId(userId);
+    //    cartDAO.saveCart(cart); // Persist the cart in the database or memory
+    //
+    //}
 }

@@ -52,5 +52,12 @@ public class CustomerDAO implements GenericDAO<Customer>{
         return Database.customers;
     }
 
+    public void addInterest(String category,Customer customer) {
+        if (category != null && !category.isEmpty() && !customer.getInterests().contains(category)) {
+            customer.getInterests().add(category); //add only if not already present
+            customer.setInterests(customer.getInterests());
+        }
+    }
+
 
 }
