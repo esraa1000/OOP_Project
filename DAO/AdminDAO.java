@@ -52,5 +52,9 @@ public class AdminDAO implements GenericDAO<Admin> {
         return null;
     }
 
+    public String getPassword(Admin admin){
+        return admin.getPassword();
+    }
+
 
 }
