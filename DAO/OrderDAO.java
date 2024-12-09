@@ -5,6 +5,7 @@ import Entity.Customer;
 import Entity.Order;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,14 @@ public class OrderDAO implements GenericDAO<Order> {
     }
 
     public void add(Order order) {
+
         Database.orders.add(order);
+
+        try {
+            Database.saveOrderToFile(order);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void update(Order order) {

@@ -1,2 +1,0 @@
-johndoe,Password123.,1990-05-15,123 Main St
-janedoe,Mypassword1.,1992-03-20,456 Oak Ave

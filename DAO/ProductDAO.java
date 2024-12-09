@@ -1,6 +1,8 @@
 package DAO;
 import Database.Database;
 import Entity.Product;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +22,11 @@ public class ProductDAO implements GenericDAO<Product> {
     //adding a product to our database
     public void add(Product product) {
         Database.products.add(product);
+        try {
+            Database.saveProductToFile(product);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void update(Product updatedProduct) {

@@ -2,6 +2,7 @@ package DAO;
 import Entity.Customer;
 import Database.Database;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +10,11 @@ public class CustomerDAO implements GenericDAO<Customer>{
 
     public void add(Customer customer){
         Database.customers.add(customer);
-
+        try {
+            Database.saveCustomerToFile(customer);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Customer getById(int id){

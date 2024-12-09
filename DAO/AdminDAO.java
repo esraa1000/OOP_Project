@@ -2,6 +2,7 @@ package DAO;
 import Database.Database;
 import Entity.Admin;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +12,11 @@ public class AdminDAO implements GenericDAO<Admin> {
 
     public  void add(Admin admin){
         Database.admins.add(admin);
+        try {
+            Database.saveAdminToFile(admin);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Admin getById(int id){

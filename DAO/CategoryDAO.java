@@ -3,6 +3,7 @@ import Database.Database;
 import Entity.Category;
 import Entity.Product;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -19,7 +20,13 @@ public class CategoryDAO implements GenericDAO<Category> {
         return null;
     }
     public void add(Category category){
+
         Database.categories.add(category);
+        try {
+            Database.saveCategoryToFile(category);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void update(Category updatedCategory) {
