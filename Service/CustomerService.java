@@ -32,11 +32,24 @@ public class CustomerService extends UserService{
 
         System.out.println("What is your address? ");
         String address=scanner.nextLine();
-        customerDAO.createNewCustomer(username,password,dateOfBirth,address);
+
+
+        while (true) {
+            System.out.print("Enter gender (" + Customer.Gender.getValidValues() + "): ");
+            String input = scanner.nextLine().trim().toUpperCase();
+
+            try {
+                Customer.Gender gender = Customer.Gender.valueOf(input);
+                customerDAO.createNewCustomer(username, password, dateOfBirth, address,gender);
+                break; // Exit loop if input is valid
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input. Please enter one of the following: " + Customer.Gender.getValidValues());
+            }
 
 
 
 
+        }
 
     }
     public void logIn(String username,String password){

@@ -60,8 +60,8 @@ public class CustomerDAO implements GenericDAO<Customer>{
         }
     }
 
-    public void createNewCustomer(String username, String password, Date dateOfBirth,String address){
-        Customer customer=new Customer(username,password,dateOfBirth,address);
+    public void createNewCustomer(String username, String password, Date dateOfBirth, String address, Customer.Gender gender){
+        Customer customer=new Customer(username,password,dateOfBirth,address,gender);
         Database.customers.add(customer);
     }
 
