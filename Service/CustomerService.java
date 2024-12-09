@@ -74,13 +74,11 @@ public class CustomerService extends UserService{
 
 
 
-
     public void addToCart(String username,Product product){
 
-
-
-
     }
+
+    public void placeOrder(){}
 
 
 

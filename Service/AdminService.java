@@ -1,10 +1,8 @@
 package Service;
-import DAO.AdminDAO;
-import DAO.CategoryDAO;
-import DAO.ProductDAO;
 import Entity.Admin;
 import Entity.Category;
 import Entity.Product;
+import DAO.*;
 import Service.ProductService;
 import Service.CategoryService;
 
@@ -20,6 +18,9 @@ public class AdminService extends UserService {
     private final ProductService productService= new ProductService();
     private final CategoryService categoryService=new CategoryService();
     private final CategoryDAO categoryDAO=new CategoryDAO();
+    private final ProductDAO productDAO=new ProductDAO();
+    private final CustomerDAO customerDAO=new CustomerDAO();
+    private final OrderDAO orderDAO=new OrderDAO();
 
 
 
@@ -99,6 +100,58 @@ public class AdminService extends UserService {
     public void CreateCategory(String name, List<Product> products){
         categoryService.createCategory(name,products);
     }
+
+    public void showAllProducts(){
+        System.out.println(productDAO.getAllProducts());
+    }
+
+    public void showAllCustomers(){
+        System.out.println(customerDAO.getAllCustomers());
+    }
+
+    public void showAllCategories(){
+        System.out.println(categoryDAO.getAllCategories());
+    }
+
+    public void showAllOrders(){
+        System.out.println(orderDAO.getAllOrders());
+    }
+
+    public void createAdmin(String username, String password, Date dateOfBirth,String role,double workingHours){
+        if(isValidUsername(username) && isValidPassword(password) && role!=null && dateOfBirth!=null && workingHours>0){
+            adminDAO.createNewAdmin(username,password,dateOfBirth,role,  workingHours);
+        }
+        else{
+            System.out.println("Info invalid couldn't create the admin");
+        }
+
+    }
+
+    public void deleteAdmin(int id){
+        Admin admin=adminDAO.getById(id);
+        if(admin!=null){
+            adminDAO.delete(id);
+        }
+        else{
+            System.out.println("Admin doesn't exist");
+        }
+    }
+
+    public void getAdmin(int id){
+        adminDAO.getById(id);
+    }
+
+    public void getAdmin(String username){
+        adminDAO.getAdminByUsername(username);
+    }
+
+    public void updateAdmin(Admin admin){
+        adminDAO.update(admin);
+    }
+
+
+
+
 
 
 
