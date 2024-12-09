@@ -1,10 +1,8 @@
 package Service;
-import DAO.AdminDAO;
-import DAO.CategoryDAO;
-import DAO.ProductDAO;
 import Entity.Admin;
 import Entity.Category;
 import Entity.Product;
+import DAO.*;
 import Service.ProductService;
 import Service.CategoryService;
 
@@ -19,7 +17,8 @@ public class AdminService extends UserService {
     private final AdminDAO adminDAO= new AdminDAO();
     private final ProductService productService= new ProductService();
     private final CategoryService categoryService=new CategoryService();
-    private final CategoryDAO categoryDAO=new CategoryDAO();
+    private final CustomerDAO customerDAO=new CustomerDAO();
+    private final OrderDAO orderDAO=new OrderDAO();
 
 
 
@@ -100,13 +99,78 @@ public class AdminService extends UserService {
         categoryService.createCategory(name,products);
     }
 
+    public void showAllProducts(){
+        productService.getAllProducts();
+    }
 
+    public void showAllCustomers(){
+        System.out.println(customerDAO.getAllCustomers());
+    }
 
+    public void showAllCategories(){
+        categoryService.getAllCategories();
+    }
 
+    public void showAllOrders(){
+        System.out.println(orderDAO.getAllOrders());
+    }
 
+    public void createAdmin(String username, String password, Date dateOfBirth,String role,double workingHours){
+        if(isValidUsername(username) && isValidPassword(password) && role!=null && dateOfBirth!=null && workingHours>0){
+            adminDAO.createNewAdmin(username,password,dateOfBirth,role,  workingHours);
+        }
+        else{
+            System.out.println("Info invalid couldn't create the admin");
+        }
 
+    }
 
+    public void deleteAdmin(int id){
+        Admin admin=adminDAO.getById(id);
+        if(admin!=null){
+            adminDAO.delete(id);
+        }
+        else{
+            System.out.println("Admin doesn't exist");
+        }
+    }
 
+    public void getAdmin(int id){
+        adminDAO.getById(id);
+    }
+
+    public void getAdmin(String username){
+        adminDAO.getAdminByUsername(username);
+    }
+
+    public void updateAdmin(Admin admin){
+        adminDAO.update(admin);
+    }
+    public void updateProduct(Product updatedProduct) {
+        // Call ProductService's updateProduct method
+        productService.updateProduct(updatedProduct);
+    }
+
+    // Method to delete a product (called from AdminService)
+    public void deleteProduct(int id) {
+        // Call ProductService's deleteProduct method
+        productService.deleteProduct(id);
+    }
+    public void checkForRestock() {
+        // Call ProductService's checkForRestock method
+        productService.checkForRestock();
+    }
+    public void getAllCategories() {
+        categoryService.getAllCategories();
+    }
+
+    public void updateCategory(Category updatedCategory) {
+        categoryService.updateCategory(updatedCategory);
+    }
+
+    public void deleteCategory(int id) {
+        categoryService.deleteCategory(id);
+    }
 
 
 }
