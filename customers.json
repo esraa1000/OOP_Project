@@ -1,0 +1,26 @@
+[
+  {
+    "username": "john_doe",
+    "password": "Password123!",
+    "dateOfBirth": "1990-05-15",
+    "address": "123 Elm Street, Springfield",
+    "gender": "MALE",
+    "interests": ["Gaming", "Traveling", "Technology"]
+  },
+  {
+    "username": "jane_smith",
+    "password": "SecurePass456!",
+    "dateOfBirth": "1985-08-22",
+    "address": "456 Oak Avenue, Metropolis",
+    "gender": "FEMALE",
+    "interests": ["Reading", "Cooking", "Fitness"]
+  },
+  {
+    "username": "sam_jones",
+    "password": "SamPass789!",
+    "dateOfBirth": "2000-02-10",
+    "address": "789 Pine Road, Gotham",
+    "gender": "MALE",
+    "interests": ["Music", "Movies", "Sports"]
+  }
+]
