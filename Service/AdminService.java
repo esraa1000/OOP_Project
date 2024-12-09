@@ -17,8 +17,6 @@ public class AdminService extends UserService {
     private final AdminDAO adminDAO= new AdminDAO();
     private final ProductService productService= new ProductService();
     private final CategoryService categoryService=new CategoryService();
-    private final CategoryDAO categoryDAO=new CategoryDAO();
-    private final ProductDAO productDAO=new ProductDAO();
     private final CustomerDAO customerDAO=new CustomerDAO();
     private final OrderDAO orderDAO=new OrderDAO();
 
@@ -102,7 +100,7 @@ public class AdminService extends UserService {
     }
 
     public void showAllProducts(){
-        System.out.println(productDAO.getAllProducts());
+        productService.getAllProducts();
     }
 
     public void showAllCustomers(){
@@ -110,7 +108,7 @@ public class AdminService extends UserService {
     }
 
     public void showAllCategories(){
-        System.out.println(categoryDAO.getAllCategories());
+        categoryService.getAllCategories();
     }
 
     public void showAllOrders(){
@@ -148,18 +146,31 @@ public class AdminService extends UserService {
     public void updateAdmin(Admin admin){
         adminDAO.update(admin);
     }
+    public void updateProduct(Product updatedProduct) {
+        // Call ProductService's updateProduct method
+        productService.updateProduct(updatedProduct);
+    }
 
+    // Method to delete a product (called from AdminService)
+    public void deleteProduct(int id) {
+        // Call ProductService's deleteProduct method
+        productService.deleteProduct(id);
+    }
+    public void checkForRestock() {
+        // Call ProductService's checkForRestock method
+        productService.checkForRestock();
+    }
+    public void getAllCategories() {
+        categoryService.getAllCategories();
+    }
 
+    public void updateCategory(Category updatedCategory) {
+        categoryService.updateCategory(updatedCategory);
+    }
 
-
-
-
-
-
-
-
-
-
+    public void deleteCategory(int id) {
+        categoryService.deleteCategory(id);
+    }
 
 
 }
