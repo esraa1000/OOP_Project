@@ -12,6 +12,9 @@ public class CustomerService extends UserService{
 
 
     private final CustomerDAO customerDAO= new CustomerDAO();
+    private OrderDAO orderDAO =new OrderDAO();
+    private OrderService orderService= new OrderService();
+    private CartService cartService= new CartService();
 
     public void signUp(String username, String password, Date dateOfBirth){
 
@@ -74,11 +77,21 @@ public class CustomerService extends UserService{
 
 
 
-    public void addToCart(String username,Product product){
+    public void addToCart(Customer customer,String productName,int quantity){
+        int id= customerDAO.getCustomerId(customer);
+        cartService.addToCart(id,productName,quantity);
 
     }
 
-    public void placeOrder(){}
+    public void removeFromCart(Customer customer,String productName,int quantity){
+        int id=customerDAO.getCustomerId(customer);
+        cartService.removeFromCart(id,productName,quantity);
+    }
+
+
+    public void placeOrder(Customer customer){
+
+    }
 
 
 

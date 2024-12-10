@@ -49,6 +49,8 @@ public class CustomerDAO implements GenericDAO<Customer>{
 
     }
 
+
+
     public List<Customer> getAllCustomers(){
         return Database.customers;
     }
@@ -64,6 +66,15 @@ public class CustomerDAO implements GenericDAO<Customer>{
         Customer customer=new Customer(username,password,dateOfBirth,address,gender);
         Database.customers.add(customer);
     }
+
+    public String getCustomerUsername(Customer customer){
+        return customer.getUsername();
+    }
+    public int getCustomerId(Customer customer){
+        return customer.getCustomerId();
+    }
+
+
 
 
 }

@@ -10,8 +10,11 @@ import java.util.List;
 
 
 public class OrderService {
-  private final OrderDAO orderDAO;
-  private final CustomerDAO customerDAO;
+  private  OrderDAO orderDAO=new OrderDAO();
+  private  CustomerDAO customerDAO=new CustomerDAO();
+
+
+  public OrderService(){}
 
   //constructor
   public OrderService(OrderDAO orderDAO , CustomerDAO customerDAO ){
