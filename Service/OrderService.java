@@ -18,6 +18,8 @@ public class OrderService {
       this.orderDAO = orderDAO;
       this.customerDAO = customerDAO;
   }
+
+
   public void placeOrder(Order order){
       if (order == null || order.getOrderId() < 0 || order.getPaymentMethod() == null) {
           throw new IllegalArgumentException("Order details are invalid.");
@@ -35,7 +37,7 @@ public class OrderService {
       if (order == null || order.getOrderId() < 0 || order.getPaymentMethod() == null){
           throw new IllegalArgumentException("Order details are invalid.");
       }
-      if (orderDAO.getById((order.getOrderId())) != null){
+      if (orderDAO.getById((order.getOrderId())) == null){
           orderDAO.update(order);
           System.out.println("order has been updated successfully");
       }
