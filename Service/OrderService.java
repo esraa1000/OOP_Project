@@ -23,18 +23,18 @@ public class OrderService {
   }
 
 
-  public void placeOrder(Order order){
-      if (order == null || order.getOrderId() < 0 || order.getPaymentMethod() == null) {
-          throw new IllegalArgumentException("Order details are invalid.");
-      }
+    public void placeOrder(Order order) {
+        if (order == null || order.getOrderId() < 0 || order.getPaymentMethod() == null) {
+            throw new IllegalArgumentException("Order details are invalid.");
+        }
 
-      if (orderDAO.getById(order.getOrderId()) != null) {
-          orderDAO.add(order);
-          System.out.println("Order has been placed successfully.");
-      } else {
-          System.out.println("An order with this ID already exists.");
-      }
-  }
+        if (orderDAO.getById(order.getOrderId()) == null) {
+            orderDAO.add(order);
+            System.out.println("Order has been placed successfully.");
+        } else {
+            System.out.println("An order with this ID already exists.");
+        }
+    }
 
   public void updateOrder(Order order){
       if (order == null || order.getOrderId() < 0 || order.getPaymentMethod() == null){

@@ -5,8 +5,7 @@ import java.util.Scanner;
 
 import DAO.*;
 import Entity.Customer;
-import Entity.Product;
-
+import Entity.Order;
 
 public class CustomerService extends UserService{
 
@@ -14,7 +13,11 @@ public class CustomerService extends UserService{
     private final CustomerDAO customerDAO= new CustomerDAO();
     private OrderDAO orderDAO =new OrderDAO();
     private OrderService orderService= new OrderService();
-    private CartService cartService= new CartService();
+    private CartService cartService= new CartService();;
+
+    public CustomerService(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     public void signUp(String username, String password, Date dateOfBirth){
 
@@ -89,11 +92,12 @@ public class CustomerService extends UserService{
     }
 
 
-    public void placeOrder(Customer customer){
+    public void placeOrder(Customer customer, Order order) {
+        if (customer == null) {
+            throw new IllegalArgumentException("Customer cannot be null");
+        }
+        orderService.placeOrder(order);
 
     }
-
-
-
 
 }
