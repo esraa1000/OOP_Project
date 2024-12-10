@@ -89,7 +89,7 @@ public class CustomerService extends UserService{
 
 
 
-
+//place order needs to be done
     public void addToCart(Customer customer,String productName,int quantity){
         cartService.addToCart(customer.getCustomerId(),productName,quantity);
 

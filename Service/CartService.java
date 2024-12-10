@@ -25,7 +25,7 @@ public class CartService {
         this.customerDAO = customerDAO;
     }
 
-
+//changed
     public void addToCart(int userId, String productName, int quantity) {
         //get the cart of this user
         Cart userCart = cartDAO.getById(cartDAO.getDefaultCartId(userId));
