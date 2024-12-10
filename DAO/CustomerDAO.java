@@ -27,6 +27,9 @@ public class CustomerDAO implements GenericDAO<Customer>{
         for(Customer c: Database.customers){
             if(c.getCustomerId()==customer.getCustomerId()){
                 //need to figure out a way to update the username, password and dataOfBirth as well
+                c.setUsername(customer.getUsername());
+                c.setPassword(customer.getPassword());
+                c.setDateOfBirth(customer.getDateOfBirth());
                 c.setGender(customer.getGender());
                 c.setAddress(customer.getAddress());
                 c.setBalance(customer.getBalance());

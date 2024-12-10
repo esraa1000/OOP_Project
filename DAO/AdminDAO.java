@@ -25,6 +25,9 @@ public class AdminDAO implements GenericDAO<Admin> {
     public void update(Admin admin){
         for(Admin a: Database.admins){
             if(a.getAdminId()==admin.getAdminId()){
+                a.setUsername(admin.getUsername());
+                a.setPassword(admin.getPassword());
+                a.setDateOfBirth(admin.getDateOfBirth());
                 a.setRole(admin.getRole());
                 a.setWorkingHours(admin.getWorkingHours());
 
