@@ -17,6 +17,7 @@ public class CartService {
     private CustomerDAO customerDAO = new CustomerDAO();
     private OrderDAO orderDAO = new OrderDAO();
 
+    public CartService(){}
 
     //constructor
     public CartService(CartDAO cartDAO, CustomerDAO customerDAO) {
