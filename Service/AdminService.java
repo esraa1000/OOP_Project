@@ -72,7 +72,7 @@ public class AdminService extends UserService {
 
 
 
-        Admin newAdmin= new Admin(username, password,dateOfBirth);
+
 
         Scanner scanner = new Scanner(System.in);
 
