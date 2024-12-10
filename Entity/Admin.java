@@ -18,19 +18,18 @@ public class Admin extends User{
 
     }
 
-    public Admin(String username, String password, Date dateOfBirth,int adminId, String role, double workingHours){
+    public Admin(String username, String password, Date dateOfBirth, String role, double workingHours){
         super(username,password,dateOfBirth);
         this.adminId=++idCounter;
-        this.adminId=adminId;
         this.role=role;
         this.workingHours=workingHours;
     }
 
-    public Admin(String username, String password, Date dateOfBirth, String role, double workingHours) {
+    /*public Admin(String username, String password, Date dateOfBirth, String role, double workingHours) {
         super(username,password,dateOfBirth);
         this.role=role;
         this.workingHours=workingHours;
-    }
+    }*/
 
     public String getRole() {
         return role;
@@ -52,8 +51,8 @@ public class Admin extends User{
         return adminId;
     }
 
-    public void setAdminId(int adminId) {
+    /*public void setAdminId(int adminId) {
         this.adminId = adminId;
-    }
+    }*/
 
 }

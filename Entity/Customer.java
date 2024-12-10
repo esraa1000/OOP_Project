@@ -39,6 +39,7 @@ public class Customer extends User {
         super(username,password,dateOfBirth);
         this.address=address;
         this.gender=gender;
+        this.customerId=++idCounter;
 
     }
 
