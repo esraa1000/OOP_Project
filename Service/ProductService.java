@@ -20,6 +20,17 @@ public class ProductService {
             System.out.println("Product details are invalid");
         }
     }
+    public void createProduct(String name, double price, Category category, int quantity){
+        Product product=productDAO.createProduct(name,price,category,quantity);
+        if(productDAO.isValidProduct(product)){
+            productDAO.add(product);
+        }
+        else{
+            System.out.println("Product details are invalid ");
+            Product.setIdCounter(Product.getIdCounter()-1);
+        }
+
+    }
     public void updateProduct(Product updatedProduct){
         if(productDAO.isValidProduct(updatedProduct)) {
             if (productDAO.getById(updatedProduct.getId()) != null) {
@@ -29,7 +40,7 @@ public class ProductService {
                 System.out.println("Product does not exist");
             }
         }else {
-            System.out.println("Uptaded Product details are invalid ");
+            System.out.println("Updated Product details are invalid ");
         }
     }
     public void deleteProduct(int id ){

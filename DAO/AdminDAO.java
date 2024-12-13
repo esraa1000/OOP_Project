@@ -31,6 +31,9 @@ public class AdminDAO implements GenericDAO<Admin> {
     public void update(Admin admin){
         for(Admin a: Database.admins){
             if(a.getAdminId()==admin.getAdminId()){
+                a.setUsername(admin.getUsername());
+                a.setPassword(admin.getPassword());
+                a.setDateOfBirth(admin.getDateOfBirth());
                 a.setRole(admin.getRole());
                 a.setWorkingHours(admin.getWorkingHours());
 
@@ -63,11 +66,19 @@ public class AdminDAO implements GenericDAO<Admin> {
         return admin.getPassword();
     }
 
-    public void createNewAdmin(String username, String password, Date dateOfBirth,String role,int workingHours){
+    public void createNewAdmin(String username, String password, Date dateOfBirth,String role,double workingHours){
         Admin admin=new Admin(username,password,dateOfBirth,role,workingHours);
         Database.admins.add(admin);
 
 
+    }
+
+    public String getAdminUsername(Admin admin){
+        return admin.getUsername();
+    }
+
+    public int getAdminId(Admin admin){
+        return admin.getAdminId();
     }
 
 

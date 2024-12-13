@@ -10,32 +10,37 @@ import java.util.List;
 
 
 public class OrderService {
-  private final OrderDAO orderDAO;
-  private final CustomerDAO customerDAO;
+  private  OrderDAO orderDAO=new OrderDAO();
+  private  CustomerDAO customerDAO=new CustomerDAO();
+
+
+  public OrderService(){}
 
   //constructor
   public OrderService(OrderDAO orderDAO , CustomerDAO customerDAO ){
       this.orderDAO = orderDAO;
       this.customerDAO = customerDAO;
   }
-  public void placeOrder(Order order){
-      if (order == null || order.getOrderId() < 0 || order.getPaymentMethod() == null) {
-          throw new IllegalArgumentException("Order details are invalid.");
-      }
 
-      if (orderDAO.getById(order.getOrderId()) != null) {
-          orderDAO.add(order);
-          System.out.println("Order has been placed successfully.");
-      } else {
-          System.out.println("An order with this ID already exists.");
-      }
-  }
+
+    public void placeOrder(Order order) {
+        if (order == null || order.getOrderId() < 0 || order.getPaymentMethod() == null) {
+            throw new IllegalArgumentException("Order details are invalid.");
+        }
+
+        if (orderDAO.getById(order.getOrderId()) == null) {
+            orderDAO.add(order);
+            System.out.println("Order has been placed successfully.");
+        } else {
+            System.out.println("An order with this ID already exists.");
+        }
+    }
 
   public void updateOrder(Order order){
       if (order == null || order.getOrderId() < 0 || order.getPaymentMethod() == null){
           throw new IllegalArgumentException("Order details are invalid.");
       }
-      if (orderDAO.getById((order.getOrderId())) != null){
+      if (orderDAO.getById((order.getOrderId())) == null){
           orderDAO.update(order);
           System.out.println("order has been updated successfully");
       }

@@ -28,6 +28,10 @@ public class CategoryDAO implements GenericDAO<Category> {
             throw new RuntimeException(e);
         }
     }
+    public Category createCategory(String name,List<Product> products ){
+             Category category=new Category(name,products);
+             return category;
+    }
 
     public void update(Category updatedCategory) {
         for (Category category : Database.categories) {

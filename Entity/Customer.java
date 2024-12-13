@@ -9,9 +9,19 @@ public class Customer extends User {
     private double balance;
     private String address;
     private List<String> interests;
-    enum Gender {
+    public enum Gender {
         MALE,
         FEMALE;
+
+        // Method to list all enum values as a String
+        public static String getValidValues() {
+            StringBuilder validValues = new StringBuilder();
+            for (Gender gender : Gender.values()) {
+                validValues.append(gender.name()).append(" ");
+            }
+            return validValues.toString().trim();
+        }
+
     }
     private Gender gender;
     private Cart cart;
@@ -21,6 +31,14 @@ public class Customer extends User {
 
     public Customer(String username,String password,Date dateOfBirth){
         super(username,password,dateOfBirth);
+        this.customerId=++idCounter;
+
+    }
+
+    public Customer(String username,String password,Date dateOfBirth,String address,Gender gender){
+        super(username,password,dateOfBirth);
+        this.address=address;
+        this.gender=gender;
         this.customerId=++idCounter;
 
     }

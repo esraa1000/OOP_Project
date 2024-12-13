@@ -32,6 +32,9 @@ public class CustomerDAO implements GenericDAO<Customer>{
         for(Customer c: Database.customers){
             if(c.getCustomerId()==customer.getCustomerId()){
                 //need to figure out a way to update the username, password and dataOfBirth as well
+                c.setUsername(customer.getUsername());
+                c.setPassword(customer.getPassword());
+                c.setDateOfBirth(customer.getDateOfBirth());
                 c.setGender(customer.getGender());
                 c.setAddress(customer.getAddress());
                 c.setBalance(customer.getBalance());
@@ -54,6 +57,8 @@ public class CustomerDAO implements GenericDAO<Customer>{
 
     }
 
+
+
     public List<Customer> getAllCustomers(){
         return Database.customers;
     }
@@ -65,10 +70,19 @@ public class CustomerDAO implements GenericDAO<Customer>{
         }
     }
 
-    public void createNewCustomer(String username, String password, Date dateOfBirth,String address){
-        Customer customer=new Customer(username,password,dateOfBirth,address);
+    public void createNewCustomer(String username, String password, Date dateOfBirth, String address, Customer.Gender gender){
+        Customer customer=new Customer(username,password,dateOfBirth,address,gender);
         Database.customers.add(customer);
     }
+
+    public String getCustomerUsername(Customer customer){
+        return customer.getUsername();
+    }
+    public int getCustomerId(Customer customer){
+        return customer.getCustomerId();
+    }
+
+
 
 
 }

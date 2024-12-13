@@ -5,13 +5,19 @@ import java.util.Scanner;
 
 import DAO.*;
 import Entity.Customer;
-import Entity.Product;
-
+import Entity.Order;
 
 public class CustomerService extends UserService{
 
 
     private final CustomerDAO customerDAO= new CustomerDAO();
+    private OrderDAO orderDAO =new OrderDAO();
+    private OrderService orderService= new OrderService();
+    private CartService cartService= new CartService();;
+
+    public CustomerService(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     public void signUp(String username, String password, Date dateOfBirth){
 
@@ -32,11 +38,24 @@ public class CustomerService extends UserService{
 
         System.out.println("What is your address? ");
         String address=scanner.nextLine();
-        customerDAO.createNewCustomer(username,password,dateOfBirth,address);
+
+
+        while (true) {
+            System.out.print("Enter gender (" + Customer.Gender.getValidValues() + "): ");
+            String input = scanner.nextLine().trim().toUpperCase();
+
+            try {
+                Customer.Gender gender = Customer.Gender.valueOf(input);
+                customerDAO.createNewCustomer(username, password, dateOfBirth, address,gender);
+                break; // Exit loop if input is valid
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid input. Please enter one of the following: " + Customer.Gender.getValidValues());
+            }
 
 
 
 
+        }
 
     }
     public void logIn(String username,String password){
@@ -61,15 +80,24 @@ public class CustomerService extends UserService{
 
 
 
-
-    public void addToCart(String username,Product product){
-
-
-
+    public void addToCart(Customer customer,String productName,int quantity){
+        int id= customerDAO.getCustomerId(customer);
+        cartService.addToCart(id,productName,quantity);
 
     }
 
+    public void removeFromCart(Customer customer,String productName,int quantity){
+        int id=customerDAO.getCustomerId(customer);
+        cartService.removeFromCart(id,productName,quantity);
+    }
 
 
+    public void placeOrder(Customer customer, Order order) {
+        if (customer == null) {
+            throw new IllegalArgumentException("Customer cannot be null");
+        }
+        orderService.placeOrder(order);
+
+    }
 
 }

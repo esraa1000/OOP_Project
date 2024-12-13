@@ -1,5 +1,6 @@
 package DAO;
 import Database.Database;
+import Entity.Category;
 import Entity.Product;
 
 import java.io.IOException;
@@ -27,6 +28,10 @@ public class ProductDAO implements GenericDAO<Product> {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public Product createProduct(String name, double price, Category category, int quantity){
+        Product product=new Product(name,price,category,quantity);
+         return product;
     }
 
     public void update(Product updatedProduct) {
