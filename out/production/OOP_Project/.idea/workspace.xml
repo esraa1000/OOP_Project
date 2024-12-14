@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fff223c-5742-417a-b1fe-b66385cef244" name="Changes" comment="Cart service implementation version 1">
-      <change afterPath="$PROJECT_DIR$/SampleFileGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/AdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/AdminDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/CategoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/CategoryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/CustomerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/OrderDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DAO/ProductDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/DAO/ProductDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Entity/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/Entity/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/customers.txt" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network/Client.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network/ClientHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Network/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Service/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +20,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="UML Class" />
         <option value="Class" />
       </list>
     </option>
@@ -48,6 +45,9 @@
     &quot;accountId&quot;: &quot;9fadbdea-e7d9-464c-9588-c85047c9c538&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.jdks/corretto-22.0.2/lib/src.zip!/java.base/java/lang/NullPointerException.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -58,14 +58,38 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "Application.SampleFileGenerator.executor": "Run",
+    "Application.Server.executor": "Run",
+    "DefaultPlantUmlFileTemplate": "UML Class",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/javaCodes/OOP_Project",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Network.Server" />
+      <module name="OOP_Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Network.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Server" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -91,7 +115,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733743371969</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Cart service implementation version 1">
+      <option name="closed" value="true" />
+      <created>1733753429443</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733753429443</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Cart service implementation version 1">
+      <option name="closed" value="true" />
+      <created>1734084596781</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1734084596781</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -108,21 +148,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Cart service implementation version 1" />
     <option name="LAST_COMMIT_MESSAGE" value="Cart service implementation version 1" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Database/Database.java</url>
-          <line>206</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/Database/Database.java</url>
-          <line>191</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
